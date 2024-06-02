@@ -1,0 +1,1512 @@
+{
+  "openapi": "3.0.1",
+  "servers": [
+    {
+      "url": "/",
+      "description": "Default Server url"
+    }
+  ],
+  "paths": {
+    "/api/match/request": {
+      "get": {
+        "tags": [
+          "match-controller"
+        ],
+        "operationId": "getMatchRequest",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultMatchResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "match-controller"
+        ],
+        "operationId": "updateMatchRequest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "matchRequestDto": {
+                    "$ref": "#/components/schemas/MatchRequestDto"
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultMatchResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "match-controller"
+        ],
+        "operationId": "registerMatchRequest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultMatchResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "match-controller"
+        ],
+        "operationId": "deleteMatchRequest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/register": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "registerUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "loginUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/match/results/{matchResultId}/feedback": {
+      "post": {
+        "tags": [
+          "match-controller"
+        ],
+        "operationId": "registerFeedback",
+        "parameters": [
+          {
+            "name": "matchResultId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "feedbackReqDto": {
+                    "$ref": "#/components/schemas/FeedbackReqDto"
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/game": {
+      "get": {
+        "tags": [
+          "game-controller"
+        ],
+        "operationId": "getGameDetails",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "game-controller"
+        ],
+        "operationId": "createGame",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GameCreationDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "game-controller"
+        ],
+        "operationId": "deleteGames",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/file/upload": {
+      "post": {
+        "tags": [
+          "file-controller"
+        ],
+        "operationId": "uploadObject",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "images"
+                ],
+                "type": "object",
+                "properties": {
+                  "images": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultListString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/business/register": {
+      "post": {
+        "tags": [
+          "business-controller"
+        ],
+        "operationId": "registerBusinessInfo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessInfoReqDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultBusinessInfoResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/business/courts": {
+      "post": {
+        "tags": [
+          "court-business-controller"
+        ],
+        "operationId": "registerCourt",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourtReqDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultCourtResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/business/courts/timeslot": {
+      "post": {
+        "tags": [
+          "court-business-controller"
+        ],
+        "operationId": "registerCourtTime",
+        "parameters": [
+          {
+            "name": "courtId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultCourtResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/business/courts/auto-match": {
+      "post": {
+        "tags": [
+          "court-business-controller"
+        ],
+        "operationId": "applyAutoMatching",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutoMatchApplyDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/business/account": {
+      "post": {
+        "tags": [
+          "business-controller"
+        ],
+        "operationId": "registerAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountReqDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultBusinessInfoResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/location": {
+      "patch": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "updateLocation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationUpdateDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/expired": {
+      "get": {
+        "tags": [
+          "auth-controller"
+        ],
+        "operationId": "expired",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/user/verify-email": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "operationId": "verifyEmail",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/courts/search": {
+      "get": {
+        "tags": [
+          "court-user-controller"
+        ],
+        "operationId": "searchCourts",
+        "parameters": [
+          {
+            "name": "courtName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultListCourtResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/match/results": {
+      "get": {
+        "tags": [
+          "match-controller"
+        ],
+        "operationId": "getMatchResult",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json;charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultListMatchResultResDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/file/delete/{uuid}": {
+      "delete": {
+        "tags": [
+          "file-controller"
+        ],
+        "operationId": "deleteObject",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultString"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MatchRequestDto": {
+        "required": [
+          "endTime",
+          "isSingles",
+          "maxTime",
+          "minTime",
+          "objective",
+          "startTime"
+        ],
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "objective": {
+            "type": "string",
+            "example": "RALLY",
+            "enum": [
+              "INTENSE",
+              "FUN",
+              "ANY"
+            ]
+          },
+          "isSingles": {
+            "type": "boolean",
+            "example": true
+          },
+          "dislikedCourts": {
+            "type": "array",
+            "example": [
+              "court1",
+              "court2"
+            ],
+            "items": {
+              "type": "string",
+              "example": "[\"court1\",\"court2\"]"
+            }
+          },
+          "minTime": {
+            "type": "integer",
+            "format": "int32",
+            "example": 30
+          },
+          "maxTime": {
+            "type": "integer",
+            "format": "int32",
+            "example": 120
+          },
+          "reservationCourtId": {
+            "type": "string",
+            "example": "courtId"
+          },
+          "reservationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "rentalCost": {
+            "type": "integer",
+            "format": "int32",
+            "example": 20000
+          },
+          "description": {
+            "type": "string",
+            "example": "테니스 랠리 연습을 위한 매치 요청"
+          }
+        }
+      },
+      "ApiResultMatchResponseDto": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "result": {
+            "$ref": "#/components/schemas/MatchResponseDto"
+          }
+        }
+      },
+      "MatchResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "662cda25e5c4314006800000"
+          },
+          "userId": {
+            "type": "string",
+            "example": "662cda25e5c4314e868188d3"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "objective": {
+            "type": "string",
+            "example": "RALLY",
+            "enum": [
+              "INTENSE",
+              "FUN",
+              "ANY"
+            ]
+          },
+          "isSingles": {
+            "type": "boolean",
+            "example": true
+          },
+          "x": {
+            "type": "number",
+            "format": "double",
+            "example": 126.887847771379
+          },
+          "y": {
+            "type": "number",
+            "format": "double",
+            "example": 37.5204279064529
+          },
+          "dislikedCourts": {
+            "type": "array",
+            "example": [
+              "court1",
+              "court2"
+            ],
+            "items": {
+              "type": "string",
+              "example": "[\"court1\",\"court2\"]"
+            }
+          },
+          "maxDistance": {
+            "type": "number",
+            "format": "double",
+            "example": 2.8
+          },
+          "minTime": {
+            "type": "integer",
+            "format": "int32",
+            "example": 30
+          },
+          "maxTime": {
+            "type": "integer",
+            "format": "int32",
+            "example": 120
+          },
+          "reservationCourtId": {
+            "type": "string",
+            "example": "courtId"
+          },
+          "reservationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "rentalCost": {
+            "type": "integer",
+            "format": "int32",
+            "example": 20000
+          },
+          "description": {
+            "type": "string",
+            "example": "테니스 랠리 연습을 위한 매치 요청"
+          }
+        }
+      },
+      "RegistrationDto": {
+        "required": [
+          "age",
+          "email",
+          "gender",
+          "name",
+          "ntrp",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "ntrp": {
+            "maximum": 7,
+            "exclusiveMaximum": false,
+            "minimum": 1,
+            "exclusiveMinimum": false,
+            "type": "number",
+            "format": "double"
+          },
+          "age": {
+            "maximum": 100,
+            "minimum": 18,
+            "type": "integer",
+            "format": "int32"
+          },
+          "gender": {
+            "pattern": "MALE|FEMALE",
+            "type": "string"
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "result": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "isSuccess": {
+            "type": "boolean"
+          }
+        }
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "FeedbackReqDto": {
+        "required": [
+          "feedback"
+        ],
+        "type": "object",
+        "properties": {
+          "feedback": {
+            "type": "string",
+            "enum": [
+              "NOTSELECTED",
+              "LIKE",
+              "DISLIKE"
+            ]
+          }
+        }
+      },
+      "ApiResultString": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "result": {
+            "type": "string"
+          }
+        }
+      },
+      "GameCreationDto": {
+        "type": "object",
+        "properties": {
+          "gameStatus": {
+            "type": "string",
+            "example": "PREGAME",
+            "enum": [
+              "PREGAME",
+              "INPLAY",
+              "POSTGAME"
+            ]
+          },
+          "playerIds": {
+            "type": "array",
+            "example": [
+              "663c6230d2b544d88a6a2968",
+              "663a0b8954ded836e72ea57d"
+            ],
+            "items": {
+              "type": "string",
+              "example": "[\"663c6230d2b544d88a6a2968\",\"663a0b8954ded836e72ea57d\"]"
+            }
+          },
+          "courtId": {
+            "type": "string",
+            "example": "604f8d3e8f8f8f8d3e8f8f8f"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-05-20T15:30:00Z"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-05-20T15:30:00Z"
+          },
+          "chatRoomId": {
+            "type": "string",
+            "example": "room123"
+          },
+          "rentalCost": {
+            "type": "number",
+            "format": "double",
+            "example": 50
+          },
+          "scores": {
+            "type": "array",
+            "description": "List of scores for each player in the game",
+            "items": {
+              "$ref": "#/components/schemas/ScoreDto"
+            }
+          },
+          "scoreConfirmed": {
+            "type": "boolean",
+            "example": true
+          },
+          "ntrpFeedbacks": {
+            "type": "array",
+            "description": "List of NTRP feedbacks from players about each other",
+            "items": {
+              "$ref": "#/components/schemas/NTRPFeedbackDto"
+            }
+          },
+          "mannerFeedbacks": {
+            "type": "array",
+            "description": "List of manner feedbacks from players about each other",
+            "items": {
+              "$ref": "#/components/schemas/MannerFeedbackDto"
+            }
+          }
+        }
+      },
+      "MannerFeedbackDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "example": "663a0b8954ded836e72ea57d"
+          },
+          "opponentUserId": {
+            "type": "string",
+            "example": "663c6230d2b544d88a6a2968"
+          },
+          "mannerScore": {
+            "type": "integer",
+            "format": "int32",
+            "example": 8
+          },
+          "comments": {
+            "type": "string",
+            "example": "Very respectful and fair play."
+          }
+        },
+        "description": "List of manner feedbacks from players about each other"
+      },
+      "NTRPFeedbackDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "example": "663c6230d2b544d88a6a2968"
+          },
+          "opponentUserId": {
+            "type": "string",
+            "example": "663a0b8954ded836e72ea57d"
+          },
+          "ntrp": {
+            "type": "number",
+            "format": "double",
+            "example": 3.5
+          },
+          "comments": {
+            "type": "string",
+            "example": "Good performance but needs consistency."
+          }
+        },
+        "description": "List of NTRP feedbacks from players about each other"
+      },
+      "ScoreDetailDto": {
+        "type": "object",
+        "properties": {
+          "userScore": {
+            "type": "integer",
+            "format": "int32",
+            "example": 6
+          },
+          "opponentScore": {
+            "type": "integer",
+            "format": "int32",
+            "example": 3
+          }
+        },
+        "description": "Details of the scores between this player and the opponent"
+      },
+      "ScoreDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "example": "663c6230d2b544d88a6a2968"
+          },
+          "scoreDetails": {
+            "type": "array",
+            "description": "Details of the scores between this player and the opponent",
+            "items": {
+              "$ref": "#/components/schemas/ScoreDetailDto"
+            }
+          }
+        },
+        "description": "List of scores for each player in the game"
+      },
+      "ApiResultListString": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "BusinessInfoReqDto": {
+        "required": [
+          "businessRegistrationNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "businessRegistrationNumber": {
+            "type": "string"
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ApiResultBusinessInfoResDto": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "result": {
+            "$ref": "#/components/schemas/BusinessInfoResDto"
+          }
+        }
+      },
+      "BusinessInfoResDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "businessRegistrationNumber": {
+            "type": "string"
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "bank": {
+            "type": "string"
+          },
+          "accountNumber": {
+            "type": "string"
+          },
+          "registrationStatus": {
+            "type": "string",
+            "enum": [
+              "PRE_APPROVAL",
+              "APPROVED"
+            ]
+          }
+        }
+      },
+      "CourtHoursDto": {
+        "type": "object",
+        "properties": {
+          "dayOfWeek": {
+            "type": "string",
+            "enum": [
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ]
+          },
+          "openTime": {
+            "type": "string"
+          },
+          "closeTime": {
+            "type": "string"
+          }
+        }
+      },
+      "CourtReqDto": {
+        "required": [
+          "courtName",
+          "courtType",
+          "latitude",
+          "longitude",
+          "ownerId"
+        ],
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "maximum": 90,
+            "minimum": -90,
+            "type": "number",
+            "format": "double",
+            "example": 37.5204279064529
+          },
+          "longitude": {
+            "maximum": 180,
+            "minimum": -180,
+            "type": "number",
+            "format": "double",
+            "example": 126.887847771379
+          },
+          "description": {
+            "type": "string"
+          },
+          "ownerId": {
+            "type": "string"
+          },
+          "courtType": {
+            "type": "string",
+            "enum": [
+              "HARD",
+              "CLAY",
+              "GRASS"
+            ]
+          },
+          "courtName": {
+            "type": "string"
+          },
+          "businessHours": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourtHoursDto"
+            }
+          },
+          "rentalCostPerHalfHour": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "ApiResultCourtResDto": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "result": {
+            "$ref": "#/components/schemas/CourtResDto"
+          }
+        }
+      },
+      "CourtResDto": {
+        "type": "object",
+        "properties": {
+          "courtId": {
+            "type": "string"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "description": {
+            "type": "string"
+          },
+          "ownerId": {
+            "type": "string"
+          },
+          "courtType": {
+            "type": "string",
+            "enum": [
+              "HARD",
+              "CLAY",
+              "GRASS"
+            ]
+          },
+          "courtName": {
+            "type": "string"
+          },
+          "businessHours": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourtHoursDto"
+            }
+          }
+        }
+      },
+      "Point": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "format": "double"
+          },
+          "y": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "AutoMatchApplyDto": {
+        "required": [
+          "courtId"
+        ],
+        "type": "object",
+        "properties": {
+          "courtId": {
+            "type": "string"
+          },
+          "dates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AccountReqDto": {
+        "required": [
+          "accountNumber",
+          "bank",
+          "businessInfoId"
+        ],
+        "type": "object",
+        "properties": {
+          "businessInfoId": {
+            "type": "string"
+          },
+          "bank": {
+            "type": "string"
+          },
+          "accountNumber": {
+            "type": "string"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "LocationUpdateDto": {
+        "type": "object",
+        "properties": {
+          "maxDistance": {
+            "type": "number",
+            "format": "double"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Point"
+          }
+        }
+      },
+      "ApiResultListCourtResDto": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CourtResDto"
+            }
+          }
+        }
+      },
+      "ApiResultListMatchResultResDto": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "result": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MatchResultResDto"
+            }
+          }
+        }
+      },
+      "MatchDetails": {
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "courtId": {
+            "type": "string"
+          },
+          "courtType": {
+            "type": "string"
+          }
+        }
+      },
+      "MatchResultResDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "opponent": {
+            "$ref": "#/components/schemas/UserResDto"
+          },
+          "matchDetails": {
+            "$ref": "#/components/schemas/MatchDetails"
+          },
+          "court": {
+            "$ref": "#/components/schemas/CourtResDto"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "NOTSELECTED",
+              "LIKE",
+              "DISLIKE"
+            ]
+          }
+        }
+      },
+      "UserResDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "emailId": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Point"
+          },
+          "maxDistance": {
+            "type": "number",
+            "format": "double"
+          },
+          "dislikedCourts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ntrp": {
+            "type": "number",
+            "format": "double"
+          },
+          "mannerScore": {
+            "type": "number",
+            "format": "double"
+          },
+          "clubIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "emailVerified": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}
