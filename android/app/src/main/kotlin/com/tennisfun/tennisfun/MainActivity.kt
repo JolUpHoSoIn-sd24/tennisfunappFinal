@@ -1,4 +1,4 @@
-package com.tennis-fun.tennis-fun
+package com.tennisFun.tennisFun
 
 import io.flutter.embedding.android.FlutterActivity
 
